@@ -5,8 +5,10 @@ import com.microsoft.playwright.Page;
 
 public class FavouritesPage {
     public final Locator favouriteCards;
+    public final Locator productName;
 
     public FavouritesPage(Page page) {
         favouriteCards = page.locator("[data-test^='favorite-']");
+        productName = page.getByTestId("product-name");
     }
 }

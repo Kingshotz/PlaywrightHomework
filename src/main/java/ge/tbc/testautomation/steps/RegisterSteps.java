@@ -5,6 +5,8 @@ import ge.tbc.testautomation.data.Constants;
 import ge.tbc.testautomation.models.UserData;
 import ge.tbc.testautomation.pages.RegisterPage;
 
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+
 public class RegisterSteps {
     Page page;
     RegisterPage registerPage;
@@ -14,7 +16,9 @@ public class RegisterSteps {
         this.registerPage = new RegisterPage(page);
     }
 
-    public void registerUser(UserData user) {
+
+
+    public RegisterSteps fillValidRegistrationData(UserData user) {
         page.navigate(Constants.REGISTER_URL);
 
         registerPage.firstNameInput.fill(user.firstName);
@@ -28,10 +32,25 @@ public class RegisterSteps {
         registerPage.stateInput.fill(user.state);
         registerPage.phoneInput.fill(user.phone);
         registerPage.emailInput.fill(user.email);
-        registerPage.passwordInput.fill(user.password);
-
+        return this;
+    }
+    public  RegisterSteps submitRegistrationForm(){
         registerPage.registerSubmitButton.click();
+        return this;
+    }
 
-        page.waitForURL(Constants.LOGIN_URL_PATTERN);
+    public RegisterSteps enterLeakedPasword(){
+        registerPage.passwordInput.fill(Constants.DATA_LEAKED_PASSWORD);
+        return this;
+    }
+    public RegisterSteps VerifyLeakedPasswordError(){
+        assertThat(registerPage.registerError).isVisible();
+        assertThat(registerPage.registerError).containsText("The given password has appeared in a data leak");
+        return this;
+    }
+
+    public RegisterSteps enterValidPassword(UserData user){
+        registerPage.passwordInput.fill(user.password);
+        return this;
     }
 }

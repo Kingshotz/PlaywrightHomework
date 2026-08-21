@@ -1,6 +1,7 @@
 package ge.tbc.testautomation.steps;
 
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.microsoft.playwright.options.LoadState;
 import ge.tbc.testautomation.pages.FavouritesPage;
 
@@ -27,6 +28,10 @@ public class FavouritesSteps {
 
     public FavouritesSteps removeFirstFavourite() {
         favouritesPage.favouriteCards.first().locator("[data-test='delete']").click();
+        return this;
+    }
+    public FavouritesSteps VerifyProductIsInFavourites(String productName) {
+        PlaywrightAssertions.assertThat(favouritesPage.productName).hasText(productName);
         return this;
     }
 }

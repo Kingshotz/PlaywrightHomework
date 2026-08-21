@@ -1,9 +1,12 @@
 package ge.tbc.testautomation.steps;
 
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.microsoft.playwright.options.LoadState;
 import ge.tbc.testautomation.data.Constants;
 import ge.tbc.testautomation.pages.CommonPage;
+import org.testng.Assert;
 
 public class CommonSteps {
     Page page;
@@ -39,10 +42,30 @@ public class CommonSteps {
         return this;
     }
 
-    public CommonSteps logOut() {
+    public CommonSteps signOut() {
         commonPage.accountMenuButton.click();
         commonPage.signOutLink.click();
         page.getByTestId("nav-sign-in").waitFor();
+        return this;
+    }
+    public CommonSteps verifyCartBadgeCount(String expectedCount) {
+        Assert.assertEquals(commonPage.cartQuantityBadge.textContent().trim(), expectedCount);
+        return this;
+    }
+
+    public CommonSteps goToCart() {
+        commonPage.cartLink.click();
+        page.waitForURL("**/checkout");
+        return this;
+    }
+    public CommonSteps VerifyUserIsSignedIned(String firstName, String lastName) {
+        PlaywrightAssertions.assertThat(commonPage.signInButton).isHidden();
+        Locator userNameButton = commonPage.userNameButton(firstName, lastName);
+        PlaywrightAssertions.assertThat(userNameButton).isVisible();
+        return this;
+    }
+    public CommonSteps VerifyLoggedOut() {
+        PlaywrightAssertions.assertThat(commonPage.signInButton).isVisible();
         return this;
     }
 }

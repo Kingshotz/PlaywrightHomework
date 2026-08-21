@@ -18,6 +18,7 @@ public class TagsTest extends BaseTest {
         commonSteps = new CommonSteps(page);
         homeSteps = new HomeSteps(page);
         singleProductSteps = new SingleProductSteps(page);
+        RegisterAndAuthorize();
     }
 
     @Test(priority = 1, description = "Go to Hand Tools category and filter by Hammer")

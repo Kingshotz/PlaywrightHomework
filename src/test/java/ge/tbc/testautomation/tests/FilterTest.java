@@ -18,6 +18,7 @@ public class FilterTest extends BaseTest {
     public void innerSetup() {
         homeSteps = new HomeSteps(page);
         commonSteps = new CommonSteps(page);
+        RegisterAndAuthorize();
     }
 
     // Sidebar "By category" filter: Hand Saw = 1 product, Wrench = 3 products (confirmed live).

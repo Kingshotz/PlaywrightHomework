@@ -17,6 +17,7 @@ public class RegisterPage {
     public Locator emailInput;
     public Locator passwordInput;
     public Locator registerSubmitButton;
+    public Locator registerError;
 
     public RegisterPage(Page page) {
         this.firstNameInput = page.getByTestId("first-name");
@@ -32,5 +33,6 @@ public class RegisterPage {
         this.emailInput = page.getByTestId("email");
         this.passwordInput = page.getByTestId("password");
         this.registerSubmitButton = page.getByTestId("register-submit");
+        registerError = page.locator("[data-test='register-error']");
     }
 }
