@@ -35,7 +35,15 @@ public class Constants {
      INVALID_CONTACT_FORM_FILE_PATH = "src/main/resources/contactFormFiles/Invalid.md",
      VALID_CONTACT_FORM_FILE_PATH = "src/main/resources/contactFormFiles/valid.txt",
      SUBMIT_CONFIRMATION = "Thanks for your message! We will contact you shortly.",
-    ATTACHMENT_WRONG_TYPE_ERROR = "File should have a txt extension.";
+    ATTACHMENT_WRONG_TYPE_ERROR = "File should have a txt extension.",
+    PESTASHOP_URL = "https://demo.prestashop.com/",
+    MAIL_TO = "demo@prestashop.com"
+
+
+
+                     ;
+
+    ;
     private Constants() {
     }
 }
