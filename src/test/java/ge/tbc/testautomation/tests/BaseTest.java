@@ -15,22 +15,21 @@ public class BaseTest {
     protected BrowserContext browserContext;
     protected Page page;
     protected UserData testUser;
-
     @BeforeClass
     public void setUp() {
         playwright = Playwright.create();
         playwright.selectors().setTestIdAttribute("data-test");
 
         BrowserType.LaunchOptions launchOptions = new BrowserType.LaunchOptions()
-                .setHeadless(false)
-                .setSlowMo(300);
+                .setHeadless(false);
         browser = playwright.chromium().launch(launchOptions);
         browserContext = browser.newContext(new Browser.NewContextOptions()
                 .setViewportSize(1920, 1080));
         page = browserContext.newPage();
-
         testUser = TestDataGenerator.generateUser();
-        new RegisterSteps(page).registerUser(testUser);
+    }
+    protected void RegisterAndAuthorize(){
+        new RegisterSteps(page).fillValidRegistrationData(testUser);
         new AuthSteps(page).authorize(testUser.email, testUser.password);
         page.waitForURL(Constants.ACCOUNT_URL_PATTERN);
     }

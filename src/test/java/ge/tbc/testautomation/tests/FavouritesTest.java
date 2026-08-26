@@ -1,6 +1,8 @@
 package ge.tbc.testautomation.tests;
 
+import ge.tbc.testautomation.models.UserData;
 import ge.tbc.testautomation.steps.*;
+import ge.tbc.testautomation.utils.TestDataGenerator;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -12,6 +14,8 @@ public class FavouritesTest extends BaseTest {
     AuthSteps authSteps;
     SingleProductSteps singleProductSteps;
     String favouritedProductName;
+    UserData testUser;
+
 
     @BeforeClass
     public void innerSetup() {
@@ -20,6 +24,10 @@ public class FavouritesTest extends BaseTest {
         favouritesSteps = new FavouritesSteps(page);
         authSteps = new AuthSteps(page);
         singleProductSteps = new SingleProductSteps(page);
+        RegisterAndAuthorize();
+        testUser = TestDataGenerator.generateUser();
+
+
     }
 
     @Test(priority = 1, description = "Add a random product to favourites")
@@ -31,7 +39,7 @@ public class FavouritesTest extends BaseTest {
 
     @Test(priority = 2, description = "Log out")
     public void logOut() {
-        commonSteps.logOut();
+        commonSteps.signOut();
     }
 
     @Test(priority = 3, description = "Log back in")

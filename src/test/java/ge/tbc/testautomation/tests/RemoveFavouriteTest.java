@@ -20,6 +20,7 @@ public class RemoveFavouriteTest extends BaseTest {
         favouritesSteps = new FavouritesSteps(page);
         authSteps = new AuthSteps(page);
         singleProductSteps = new SingleProductSteps(page);
+        RegisterAndAuthorize();
     }
 
     @Test(priority = 1, description = "Add a product to favourites (precondition)")
@@ -37,7 +38,7 @@ public class RemoveFavouriteTest extends BaseTest {
 
     @Test(priority = 3, description = "Log out")
     public void logOut() {
-        commonSteps.logOut();
+        commonSteps.signOut();
     }
 
     @Test(priority = 4, description = "Log back in")
