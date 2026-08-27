@@ -37,7 +37,8 @@ public class Constants {
      SUBMIT_CONFIRMATION = "Thanks for your message! We will contact you shortly.",
     ATTACHMENT_WRONG_TYPE_ERROR = "File should have a txt extension.",
     PESTASHOP_URL = "https://demo.prestashop.com/",
-    MAIL_TO = "demo@prestashop.com"
+    MAIL_TO = "demo@prestashop.com",
+    TECH_CANVAS_REGISTER_URL = "https://techcanvass.com/examples/register.html"
 
 
 
